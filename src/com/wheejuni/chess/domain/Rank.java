@@ -2,32 +2,32 @@ package com.wheejuni.chess.domain;
 
 import java.util.ArrayList;
 
-import com.wheejuni.chess.pieces.Pawn;
+import com.wheejuni.chess.pieces.Piece;
 
 public class Rank {
 
-	private ArrayList<Pawn> row = new ArrayList<>();
+	private ArrayList<Piece> row = new ArrayList<>();
 
-	public void addPawn(Pawn pawn) {
+	public void addPawn(Piece pawn) {
 		row.add(pawn);
 	}
 
 	public void whiteInitialize() {
 		for (int i = 0; i < 8; i++) {
-			row.add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+			row.add(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
 		}
 	}
 
 	public void blackInitialize() {
 		for (int i = 0; i < 8; i++) {
-			row.add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+			row.add(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
 		}
 	}
 	
 	public void blankInitialize() {
 		
 		for (int i = 0; i < 8; i++) {
-			row.add(new Pawn(Pawn.BLANK_LABEL, Pawn.BLANK_REPRESENTATION));
+			row.add(new Piece(Piece.BLANK_LABEL, Piece.BLANK_REPRESENTATION));
 		}
 		
 		

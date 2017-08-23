@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.wheejuni.chess.domain.Board;
-import com.wheejuni.chess.pieces.Pawn;
+import com.wheejuni.chess.pieces.Piece;
 
 public class BoardTest {
 
@@ -21,9 +21,9 @@ public class BoardTest {
 	public void init() {
 		Board board = new Board();
 
-		Pawn pawn = new Pawn(Pawn.WHITE_COLOR);
+		Piece pawn = new Piece(Piece.WHITE_COLOR);
 		board.add(pawn);
-		Pawn blackpawn = new Pawn(Pawn.BLACK_COLOR);
+		Piece blackpawn = new Piece(Piece.BLACK_COLOR);
 		board.add(blackpawn);
 		assertEquals(2, board.size());
 		assertEquals(blackpawn, board.findBlackPawn(0));

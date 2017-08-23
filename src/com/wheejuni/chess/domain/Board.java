@@ -2,18 +2,18 @@ package com.wheejuni.chess.domain;
 
 import java.util.ArrayList;
 
-import com.wheejuni.chess.pieces.Pawn;
+import com.wheejuni.chess.pieces.Piece;
 
 public class Board {
 	public static final String BLANK_SPACE = "*";
 
 	private String currentBoard;
-	private ArrayList<Pawn> whitePawns;
-	private ArrayList<Pawn> blackPawns;
+	private ArrayList<Piece> whitePawns;
+	private ArrayList<Piece> blackPawns;
 	private ArrayList<BoardTile> board;
 	private ArrayList<Rank> row = new ArrayList<>();
 
-	public void add(Pawn pawn) {
+	public void add(Piece pawn) {
 
 		if (whitePawns == null) {
 			whitePawns = new ArrayList<>();
@@ -36,11 +36,11 @@ public class Board {
 		return this.whitePawns.size() + this.blackPawns.size();
 	}
 
-	public Pawn findWhitePawn(int position) {
+	public Piece findWhitePawn(int position) {
 		return this.whitePawns.get(position);
 	}
 
-	public Pawn findBlackPawn(int position) {
+	public Piece findBlackPawn(int position) {
 		return this.blackPawns.get(position);
 	}
 

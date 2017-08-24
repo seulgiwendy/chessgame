@@ -14,20 +14,20 @@ public class Rank {
 
 	public void whiteInitialize() {
 		for (int i = 0; i < 8; i++) {
-			row.add(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
+			row.add(new Piece(Piece.Color.WHITE, Piece.Type.PAWN_WHITE));
 		}
 	}
 
 	public void blackInitialize() {
 		for (int i = 0; i < 8; i++) {
-			row.add(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
+			row.add(new Piece(Piece.Color.BLACK, Piece.Type.PAWN_BLACK));
 		}
 	}
 	
 	public void blankInitialize() {
 		
 		for (int i = 0; i < 8; i++) {
-			row.add(new Piece(Piece.BLANK_LABEL, Piece.BLANK_REPRESENTATION));
+			row.add(new Piece(Piece.Color.BLANK, Piece.Type.BLANK));
 		}
 		
 		

@@ -1,26 +1,36 @@
 package com.wheejuni.chess.pieces;
 
-@SuppressWarnings("unused")
 public class Piece {
 
 	public enum Color {
-		BLACK('P'), WHITE('p'), BLANK('*');
-		
-		private char representation;
-		Color(char representation){
-			this.representation = representation;
+		BLACK("black"), WHITE("white"), BLANK("blank");
+
+		private String color;
+
+		Color(String color) {
+			this.color = color;
 		}
+
+		public String getColor() {
+			return this.color;
+
+		}
+
 	}
 
 	public enum Type {
 
-		PAWN('p'), BISHOP('b'), QUEEN('q'), KING('k'), ROOK('r'), KNIGHT('h'), BLANK('#') ;
+		PAWN_WHITE('p'), PAWN_BLACK('P'), BISHOP('b'), QUEEN('q'), KING('k'), ROOK('r'), KNIGHT('h'), BLANK('#');
 
 		private char representation;
 
 		Type(char representation) {
 			this.representation = representation;
 
+		}
+		
+		public char getRepresentation() {
+			return this.representation;
 		}
 	}
 
@@ -31,14 +41,15 @@ public class Piece {
 		this.color = color;
 	}
 
-	public Piece(String color, Type type) {
-		this.color = color;
-		this.representation = type.representation;
-		
+	public Piece(Color color, Type type) {
+		this.color = color.getColor();
+		this.representation = type.getRepresentation();
+
 	}
 
 	public Piece() {
-		this.color = "white";
+		this.color = Piece.Color.WHITE.getColor();
+		this.representation = Piece.Type.PAWN_WHITE.getRepresentation();
 	}
 
 	public String getColor() {

@@ -28,7 +28,7 @@ public class Piece {
 			this.representation = representation;
 
 		}
-		
+
 		public char getRepresentation() {
 			return this.representation;
 		}
@@ -37,8 +37,14 @@ public class Piece {
 	String color;
 	char representation;
 
-	public Piece(String color) {
-		this.color = color;
+	public Piece(Color color) {
+		this.color = color.getColor();
+		if (color.getColor().equals("white")) {
+			this.representation = Type.PAWN_WHITE.getRepresentation();
+			return;
+		}
+		this.representation = Type.PAWN_BLACK.getRepresentation();
+
 	}
 
 	public Piece(Color color, Type type) {

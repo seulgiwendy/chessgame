@@ -21,9 +21,9 @@ public class BoardTest {
 	public void init() {
 		Board board = new Board();
 
-		Piece pawn = new Piece(Piece.WHITE_COLOR);
+		Piece pawn = new Piece(Piece.Color.WHITE);
 		board.add(pawn);
-		Piece blackpawn = new Piece(Piece.BLACK_COLOR);
+		Piece blackpawn = new Piece(Piece.Color.BLACK);
 		board.add(blackpawn);
 		assertEquals(2, board.size());
 		assertEquals(blackpawn, board.findBlackPawn(0));

@@ -6,7 +6,6 @@ import com.wheejuni.chess.pieces.Piece;
 public class PieceBuilder {
 	
 	private PieceTypeFactory ptf;
-	private Piece piece;
 	
 	public void setPieceType(PieceTypeFactory ptf) {
 		this.ptf = ptf;

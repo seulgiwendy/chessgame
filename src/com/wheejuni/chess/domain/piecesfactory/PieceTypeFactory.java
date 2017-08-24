@@ -1,4 +1,4 @@
-package com.wheejuni.chess.domain;
+package com.wheejuni.chess.domain.piecesfactory;
 
 import com.wheejuni.chess.pieces.Piece;
 

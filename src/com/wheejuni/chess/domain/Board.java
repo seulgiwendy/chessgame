@@ -3,9 +3,12 @@ package com.wheejuni.chess.domain;
 import java.util.ArrayList;
 
 import com.wheejuni.chess.pieces.Piece;
+import com.wheejuni.chess.pieces.Piece.Color;
+import com.wheejuni.chess.pieces.Piece.Type;
 
 public class Board {
 	public static final String BLANK_SPACE = "*";
+	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	private String currentBoard;
 	private ArrayList<Piece> whitePawns;
@@ -45,27 +48,23 @@ public class Board {
 	}
 
 	public void initialize() {
-			Rank rank = new Rank();
-			rank.blankInitialize();
-			this.row.add(rank);
-			Rank white = new Rank();
-			white.blackInitialize();
-			this.row.add(white);
-		
+		Rank rank = new Rank();
+		rank.blankInitialize();
+		this.row.add(rank);
+		Rank white = new Rank();
+		white.blackInitialize();
+		this.row.add(white);
+
 		for (int i = 2; i < 6; i++) {
-			
+
 			this.row.add(rank);
-			
+
 		}
-			Rank black = new Rank();
-			black.whiteInitialize();
-			this.row.add(black);
-			this.row.add(rank);
-			for (int i = 0; i < this.row.size(); i++) {
-				System.out.println(this.row.get(i));
-				
-			}
-		
+		Rank black = new Rank();
+		black.whiteInitialize();
+		this.row.add(black);
+		this.row.add(rank);
+
 	}
 
 	public String getWhitePawnsResult() {
@@ -86,9 +85,27 @@ public class Board {
 		return sbf.toString();
 
 	}
-	
+
+	public int getPieceofColorandType(Type type, Color color) {
+		int count = 0;
+
+		for (Rank ranks : row) {
+			int temp = ranks.getEqualPieces(new Piece(color, type));
+			count += temp;
+
+		}
+
+		return count;
+	}
+
 	public String getCurrentBoardStatus() {
-		return this.currentBoard;
+		StringBuilder returnStringGenerator = new StringBuilder();
+		
+		for (Rank rows : row) {
+			returnStringGenerator.append(rows.toString());
+			returnStringGenerator.append(LINE_SEPARATOR);
+		}
+		return returnStringGenerator.toString();
 	}
 
 }

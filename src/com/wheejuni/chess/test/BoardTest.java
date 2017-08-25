@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.wheejuni.chess.domain.Board;
 import com.wheejuni.chess.pieces.Piece;
+import com.wheejuni.chess.pieces.Piece.Color;
+import com.wheejuni.chess.pieces.Piece.Type;
 
 public class BoardTest {
 
@@ -35,5 +37,12 @@ public class BoardTest {
 		Board board = new Board();
 		board.initialize();
 		System.out.println(board.getCurrentBoardStatus());
+	}
+	
+	@Test
+	public void getEqualPieces() {
+		Board board = new Board();
+		board.initialize();
+		assertEquals(8, board.getPieceofColorandType(Type.PAWN_BLACK, Color.BLACK));
 	}
 }

@@ -23,23 +23,35 @@ public class Rank {
 			row.add(new Piece(Piece.Color.BLACK, Piece.Type.PAWN_BLACK));
 		}
 	}
-	
+
 	public void blankInitialize() {
-		
+
 		for (int i = 0; i < 8; i++) {
 			row.add(new Piece(Piece.Color.BLANK, Piece.Type.BLANK));
 		}
-		
-		
+
 	}
+
+	public int getEqualPieces(Piece piece) {
+		int count = 0;
+
+		for (Piece pieceOnRank : this.row) {
+			if (pieceOnRank.equals(piece)) {
+				count++;
+			}
+		}
+
+		return count;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer sbf = new StringBuffer();
-		
+
 		for (int i = 0; i < this.row.size(); i++) {
 			sbf.append(this.row.get(i).getRepresentation());
 		}
-		
+
 		return sbf.toString();
 	}
 

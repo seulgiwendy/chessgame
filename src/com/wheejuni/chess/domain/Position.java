@@ -38,6 +38,7 @@ public class Position {
 		}
 
 		this.columnIndex = Integer.parseInt(input[1]) - 1;
+		this.symbol = symbol;
 
 	}
 

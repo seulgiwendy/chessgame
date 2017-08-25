@@ -1,5 +1,7 @@
 package com.wheejuni.chess.pieces;
 
+import com.wheejuni.chess.domain.Position;
+
 public class Piece {
 
 	public enum Color {
@@ -36,6 +38,7 @@ public class Piece {
 
 	String color;
 	char representation;
+	
 
 	public Piece(Color color) {
 		this.color = color.getColor();

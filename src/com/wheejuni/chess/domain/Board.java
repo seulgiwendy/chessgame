@@ -9,16 +9,17 @@ import com.wheejuni.chess.pieces.Piece.Type;
 public class Board {
 	public static final String BLANK_SPACE = "*";
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
-	
-	enum RowLetter{
-		
-		ROW_0("A"), ROW_1("B"), ROW_2("C"), ROW_3("D"), ROW_4("E"), ROW_5("F"), ROW_6("G"), ROW_7("H"); 
-		
+
+	enum RowLetter {
+
+		ROW_0("A"), ROW_1("B"), ROW_2("C"), ROW_3("D"), ROW_4("E"), ROW_5("F"), ROW_6("G"), ROW_7("H");
+
 		private String symbol;
-		RowLetter(String symbol){
+
+		RowLetter(String symbol) {
 			this.symbol = symbol;
 		}
-		
+
 		String getSymbol() {
 			return this.symbol;
 		}
@@ -61,23 +62,36 @@ public class Board {
 		return this.blackPawns.get(position);
 	}
 
+	public void blankInitialize() {
+
+		for (int i = 0; i < 8; i++) {
+			Rank rank = new Rank();
+			rank.blankInitialize();
+			this.row.add(rank);
+		}
+	}
+
 	public void initialize() {
 		Rank rank = new Rank();
 		rank.blankInitialize();
-		this.row.add(rank);
-		Rank white = new Rank();
-		white.blackInitialize();
-		this.row.add(white);
+		Rank blackDefault = new Rank();
+		blackDefault.defaultBlackRankSetInitialize();
+		this.row.add(blackDefault);
+		Rank black = new Rank();
+		black.blackInitialize();
+		this.row.add(black);
 
 		for (int i = 2; i < 6; i++) {
 
 			this.row.add(rank);
 
 		}
-		Rank black = new Rank();
-		black.whiteInitialize();
-		this.row.add(black);
-		this.row.add(rank);
+		Rank white = new Rank();
+		white.whiteInitialize();
+		this.row.add(white);
+		Rank whiteDefault = new Rank();
+		whiteDefault.defaultWhiteRankSetInitialize();
+		this.row.add(whiteDefault);
 
 	}
 
@@ -114,16 +128,22 @@ public class Board {
 
 	public String getCurrentBoardStatus() {
 		StringBuilder returnStringGenerator = new StringBuilder();
-		
+
 		for (Rank rows : row) {
 			returnStringGenerator.append(rows.toString());
 			returnStringGenerator.append(LINE_SEPARATOR);
 		}
 		return returnStringGenerator.toString();
 	}
-	
+
 	public Piece findPiece(Position position) {
 		return this.row.get(position.getRankIndex()).getPieceByPosition(position.getColumnIndex());
+	}
+
+	public void put(Piece piece, Position position) {
+		Rank target = this.row.get(position.getRankIndex());
+		
+		target.addPieceByIndex(piece, position.getColumnIndex());
 	}
 
 }

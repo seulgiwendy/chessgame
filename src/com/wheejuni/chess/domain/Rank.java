@@ -2,14 +2,23 @@ package com.wheejuni.chess.domain;
 
 import java.util.ArrayList;
 
+import com.wheejuni.chess.domain.piecesfactory.BlackRookCreator;
+import com.wheejuni.chess.domain.piecesfactory.PieceTypeFactory;
 import com.wheejuni.chess.pieces.Piece;
+import com.wheejuni.chess.pieces.Piece.Color;
+import com.wheejuni.chess.pieces.Piece.Type;
 
 public class Rank {
 
 	private ArrayList<Piece> row = new ArrayList<>();
+	private PieceTypeFactory ptf;
 
-	public void addPawn(Piece pawn) {
-		row.add(pawn);
+	public void addPiece(Piece piece) {
+		row.add(piece);
+	}
+	
+	public void addPieceByIndex(Piece piece, int index) {
+		row.set(index, piece);
 	}
 
 	public void whiteInitialize() {
@@ -30,6 +39,30 @@ public class Rank {
 			row.add(new Piece(Piece.Color.BLANK, Piece.Type.BLANK));
 		}
 
+	}
+	
+	public void defaultBlackRankSetInitialize() {
+		row.add(new Piece(Color.BLACK, Type.ROOK));
+		row.add(new Piece(Color.BLACK, Type.KNIGHT));
+		row.add(new Piece(Color.BLACK, Type.BISHOP));
+		row.add(new Piece(Color.BLACK, Type.QUEEN));
+		row.add(new Piece(Color.BLACK, Type.KING));
+		row.add(new Piece(Color.BLACK, Type.BISHOP));
+		row.add(new Piece(Color.BLACK, Type.KNIGHT));
+		row.add(new Piece(Color.BLACK, Type.ROOK));
+	}
+	
+	public void defaultWhiteRankSetInitialize() {
+		
+		row.add(new Piece(Color.WHITE, Type.ROOK));
+		row.add(new Piece(Color.WHITE, Type.KNIGHT));
+		row.add(new Piece(Color.WHITE, Type.BISHOP));
+		row.add(new Piece(Color.WHITE, Type.QUEEN));
+		row.add(new Piece(Color.WHITE, Type.KING));
+		row.add(new Piece(Color.WHITE, Type.BISHOP));
+		row.add(new Piece(Color.WHITE, Type.KNIGHT));
+		row.add(new Piece(Color.WHITE, Type.ROOK));
+		
 	}
 
 	public int getEqualPieces(Piece piece) {

@@ -9,6 +9,20 @@ import com.wheejuni.chess.pieces.Piece.Type;
 public class Board {
 	public static final String BLANK_SPACE = "*";
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	
+	enum RowLetter{
+		
+		ROW_0("A"), ROW_1("B"), ROW_2("C"), ROW_3("D"), ROW_4("E"), ROW_5("F"), ROW_6("G"), ROW_7("H"); 
+		
+		private String symbol;
+		RowLetter(String symbol){
+			this.symbol = symbol;
+		}
+		
+		String getSymbol() {
+			return this.symbol;
+		}
+	}
 
 	private String currentBoard;
 	private ArrayList<Piece> whitePawns;
@@ -106,6 +120,10 @@ public class Board {
 			returnStringGenerator.append(LINE_SEPARATOR);
 		}
 		return returnStringGenerator.toString();
+	}
+	
+	public Piece findPiece(Position position) {
+		return this.row.get(position.getRankIndex()).getPieceByPosition(position.getColumnIndex());
 	}
 
 }

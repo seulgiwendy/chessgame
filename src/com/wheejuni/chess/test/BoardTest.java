@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.wheejuni.chess.domain.Board;
+import com.wheejuni.chess.domain.Position;
 import com.wheejuni.chess.pieces.Piece;
 import com.wheejuni.chess.pieces.Piece.Color;
 import com.wheejuni.chess.pieces.Piece.Type;
@@ -44,5 +45,12 @@ public class BoardTest {
 		Board board = new Board();
 		board.initialize();
 		assertEquals(8, board.getPieceofColorandType(Type.PAWN_BLACK, Color.BLACK));
+	}
+	
+	@Test
+	public void findPiece() {
+		Board board = new Board();
+		board.initialize();
+		assertEquals(new Piece(Color.BLACK, Type.PAWN_BLACK), board.findPiece(new Position("B8")));
 	}
 }

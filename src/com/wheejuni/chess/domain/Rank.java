@@ -43,6 +43,10 @@ public class Rank {
 
 		return count;
 	}
+	
+	public Piece getPieceByPosition(int position) {
+		return this.row.get(position);
+	}
 
 	@Override
 	public String toString() {

@@ -38,7 +38,6 @@ public class Piece {
 
 	String color;
 	char representation;
-	
 
 	public Piece(Color color) {
 		this.color = color.getColor();
@@ -69,6 +68,13 @@ public class Piece {
 		return this.representation;
 	}
 
+	public boolean equalColor(Color color) {
+		if (this.color.equals(color.getColor())) {
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,7 +102,13 @@ public class Piece {
 			return false;
 		return true;
 	}
-	
-	
+
+	public boolean equalType(Type type) {
+		if (this.representation == type.getRepresentation()) {
+			return true;
+		}
+
+		return false;
+	}
 
 }

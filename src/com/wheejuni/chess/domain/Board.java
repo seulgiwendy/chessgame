@@ -142,8 +142,16 @@ public class Board {
 
 	public void put(Piece piece, Position position) {
 		Rank target = this.row.get(position.getRankIndex());
-		
+
 		target.addPieceByIndex(piece, position.getColumnIndex());
+	}
+
+	public int calculatePoint() {
+		Rank rank = this.row.get(2);
+		if (rank.getEqualPieces(new Piece(Color.BLACK, Type.ROOK)) == 1) {
+			return 5;
+		}
+		return 0;
 	}
 
 }

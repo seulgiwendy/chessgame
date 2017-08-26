@@ -80,7 +80,8 @@ public class Rank {
 	public Piece getPieceByPosition(int position) {
 		return this.row.get(position);
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		StringBuffer sbf = new StringBuffer();
@@ -90,6 +91,31 @@ public class Rank {
 		}
 
 		return sbf.toString();
+	}
+
+	public int calculatePoint() {
+		int point = 0;
+		for (Piece piece : this.row) {
+			if (piece.equalType(Type.ROOK)) {
+				point += 5;
+			}
+			if (piece.equalType(Type.BISHOP)) {
+				point += 3;
+			}
+			if (piece.equalType(Type.QUEEN)) {
+				point += 9;
+			}
+			if (piece.equalType(Type.KNIGHT)){
+				point += 2.5; 
+			}
+			if (piece.equalType(Type.PAWN_BLACK)) {
+				point += 1;
+			}
+			if (piece.equalType(Type.PAWN_WHITE)) {
+				point += 1;
+			}
+		}
+		return point;
 	}
 
 }

@@ -37,7 +37,7 @@ public class BoardTest {
 	public void initialize() throws Exception {
 		Board board = new Board();
 		board.initialize();
-		//System.out.println(board.getCurrentBoardStatus());
+		System.out.println(board.getCurrentBoardStatus());
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public class BoardTest {
 		board.blankInitialize();
 		Piece piece = new Piece(Color.BLACK, Type.KING);
 		board.put(piece, new Position("C3"));
-		System.out.println(board.getCurrentBoardStatus());
+		//System.out.println(board.getCurrentBoardStatus());
 	}
 	
 	@Test
@@ -61,5 +61,13 @@ public class BoardTest {
 		Board board = new Board();
 		board.initialize();
 		assertEquals(new Piece(Color.BLACK, Type.PAWN_BLACK), board.findPiece(new Position("B3")));
+	}
+	
+	@Test
+	public void calculatePoint() {
+		Board board = new Board();
+		board.blankInitialize();
+		board.put(new Piece(Color.BLACK, Type.ROOK), new Position("C8"));
+		assertEquals(5, board.calculatePoint());
 	}
 }

@@ -32,7 +32,7 @@ public class PieceTest {
 	@Test
 	public void createByInterface() {
 		Piece piece = newBlackPawn();
-		System.out.println(piece.getColor());
+		//System.out.println(piece.getColor());
 		assertEquals(piece.getColor(), Piece.Color.BLACK.getColor());
 	}
 
@@ -41,6 +41,18 @@ public class PieceTest {
 		Piece piece = newWhiteBishop();
 		assertEquals(piece.getRepresentation(), Piece.Type.BISHOP.getRepresentation());
 
+	}
+	
+	@Test
+	public void equalColor() {
+		Piece piece = new Piece(Color.BLACK, Type.BISHOP);
+		assertTrue(piece.equalColor(Color.BLACK));
+	}
+	
+	@Test
+	public void equalPiece() {
+		Piece piece = newWhiteBishop();
+		assertTrue(piece.equalType(Type.BISHOP));
 	}
 
 	void verifyPawn(Color color, Type type) {

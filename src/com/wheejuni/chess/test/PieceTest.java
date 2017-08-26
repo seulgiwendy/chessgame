@@ -46,13 +46,13 @@ public class PieceTest {
 	@Test
 	public void equalColor() {
 		Piece piece = new Piece(Color.BLACK, Type.BISHOP);
-		assertTrue(piece.equalColor(Color.BLACK));
+		assertTrue(piece.isEqualColor(Color.BLACK));
 	}
 	
 	@Test
 	public void equalPiece() {
 		Piece piece = newWhiteBishop();
-		assertTrue(piece.equalType(Type.BISHOP));
+		assertTrue(piece.isEqualType(Type.BISHOP));
 	}
 
 	void verifyPawn(Color color, Type type) {

@@ -68,10 +68,17 @@ public class Piece {
 		return this.representation;
 	}
 
-	public boolean equalColor(Color color) {
+	public boolean isEqualColor(Color color) {
 		if (this.color.equals(color.getColor())) {
 			return true;
 		}
+		return false;
+	}
+	public boolean isEqualType(Type type) {
+		if (this.representation == type.getRepresentation()) {
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -103,12 +110,5 @@ public class Piece {
 		return true;
 	}
 
-	public boolean equalType(Type type) {
-		if (this.representation == type.getRepresentation()) {
-			return true;
-		}
-
-		return false;
-	}
 
 }

@@ -96,22 +96,22 @@ public class Rank {
 	public int calculatePoint() {
 		int point = 0;
 		for (Piece piece : this.row) {
-			if (piece.equalType(Type.ROOK)) {
+			if (piece.isEqualType(Type.ROOK)) {
 				point += 5;
 			}
-			if (piece.equalType(Type.BISHOP)) {
+			if (piece.isEqualType(Type.BISHOP)) {
 				point += 3;
 			}
-			if (piece.equalType(Type.QUEEN)) {
+			if (piece.isEqualType(Type.QUEEN)) {
 				point += 9;
 			}
-			if (piece.equalType(Type.KNIGHT)){
+			if (piece.isEqualType(Type.KNIGHT)){
 				point += 2.5; 
 			}
-			if (piece.equalType(Type.PAWN_BLACK)) {
+			if (piece.isEqualType(Type.PAWN_BLACK)) {
 				point += 1;
 			}
-			if (piece.equalType(Type.PAWN_WHITE)) {
+			if (piece.isEqualType(Type.PAWN_WHITE)) {
 				point += 1;
 			}
 		}

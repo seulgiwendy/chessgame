@@ -133,14 +133,10 @@ public class BoardTest {
 	
 	@Test
 	public void verifyDeductedPoints() {
-		Board board = makeEmptyBoard();
-		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("A3"));
-		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("B3"));
-		board.put(new Piece(Color.WHITE,  Type.PAWN_WHITE), new Position("C3"));
-		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("D7"));
-		board.put(new Piece(Color.BLACK,Type.PAWN_BLACK), new Position("D3"));
+		Board board = makeIdenticalTestPawnsBoard();
 		System.out.println(board.getCurrentBoardStatus());
 		assertEquals(2.5, board.calculateWhiteSidePoints(), DELTA);
+		assertEquals(2.0, board.calculateBlackSidePoint(), DELTA);
 	}
 	
 	Board makeEmptyBoard() {
@@ -152,6 +148,18 @@ public class BoardTest {
 	Board makeDefaultGameBoard() {
 		Board board = new Board();
 		board.initialize();
+		return board;
+	}
+	
+	Board makeIdenticalTestPawnsBoard() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("A3"));
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("B3"));
+		board.put(new Piece(Color.WHITE,  Type.PAWN_WHITE), new Position("C3"));
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("D7"));
+		board.put(new Piece(Color.BLACK,Type.PAWN_BLACK), new Position("D3"));
+		board.put(new Piece(Color.BLACK,Type.PAWN_BLACK), new Position("C7"));
+		board.put(new Piece(Color.BLACK,Type.PAWN_BLACK), new Position("E7"));
 		return board;
 	}
 }

@@ -66,6 +66,14 @@ public class Column {
 		return count;
 	}
 
+	public int getIdenticalBlackPawnsCount() {
+		int count = this.getBlackPawnsCount();
+		if (count == 1) {
+			return 0;
+		}
+		return count;
+	}
+
 	
 	
 	

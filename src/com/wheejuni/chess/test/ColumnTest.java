@@ -52,6 +52,12 @@ public class ColumnTest {
 		Column column = getPawnsColumn();
 		assertEquals(3, column.getIdenticalWhitePawnsCount());
 	}
+	
+	@Test
+	public void getIdenticalBlackPawnsCount() {
+		Column column = getBlackPawnsColumn();
+		assertEquals(3, column.getIdenticalBlackPawnsCount());
+	}
 
 	Board getDefaultBoard() {
 		Board board = new Board();
@@ -72,6 +78,14 @@ public class ColumnTest {
 		}
 		return new Column(whitePawns);
 
+	}
+	
+	Column getBlackPawnsColumn() {
+		ArrayList<Piece> blackPawns = new ArrayList<>();
+		for (int i = 0; i < 3; i++) {
+			blackPawns.add(new Piece(Color.BLACK, Type.PAWN_BLACK));
+		}
+		return new Column(blackPawns);
 	}
 
 }

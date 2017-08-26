@@ -172,7 +172,7 @@ public class Board {
 			columns.add(getColumn(i));
 		}
 		for (Column column : columns) {
-			result -= column.getWhitePanwsCount() * 0.5;
+			result -= column.getIdenticalBlackPawnsCount() * 0.5;
 		}
 		return result;
 	}

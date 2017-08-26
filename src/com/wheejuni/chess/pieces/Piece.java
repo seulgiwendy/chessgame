@@ -22,23 +22,36 @@ public class Piece {
 
 	public enum Type {
 
-		PAWN_WHITE('p'), PAWN_BLACK('P'), BISHOP('b'), QUEEN('q'), KING('k'), ROOK('r'), KNIGHT('h'), BLANK('#');
+		PAWN_WHITE('p', 1.0), PAWN_BLACK('P', 1.0), BISHOP('b', 3.0), QUEEN('q', 9.0), KING('k', 0.0), ROOK('r', 5.0), KNIGHT('h', 2.5), BLANK('#', 0.0);
 
 		private char representation;
+		private double points;
+		
 
-		Type(char representation) {
+		Type(char representation, double points) {
 			this.representation = representation;
+			this.points = points;
 
 		}
 
 		public char getRepresentation() {
 			return this.representation;
 		}
+		
+		public double getPoints() {
+			return this.points;
+		}
 	}
 
 	String color;
 	char representation;
+	double points;
 
+	/*This constructor is used to create default Pawn piece with parameter "color".
+	 * Use of Piece(Color, type:pawn) is strongly recommended.
+	 */
+	
+	@Deprecated
 	public Piece(Color color) {
 		this.color = color.getColor();
 		if (color.getColor().equals("white")) {
@@ -52,6 +65,7 @@ public class Piece {
 	public Piece(Color color, Type type) {
 		this.color = color.getColor();
 		this.representation = type.getRepresentation();
+		this.points = type.getPoints();
 
 	}
 
@@ -108,6 +122,11 @@ public class Piece {
 		if (representation != other.representation)
 			return false;
 		return true;
+	}
+
+	public double getPoints() {
+		
+		return this.points;
 	}
 
 

@@ -54,6 +54,12 @@ public class PieceTest {
 		Piece piece = newWhiteBishop();
 		assertTrue(piece.isEqualType(Type.BISHOP));
 	}
+	
+	@Test
+	public void getPointsFromPiece() {
+		Piece piece = newWhiteBishop();
+		assertEquals(3, piece.getPoints(), 0.1);
+	}
 
 	void verifyPawn(Color color, Type type) {
 		Piece pawn = new Piece(color, type);

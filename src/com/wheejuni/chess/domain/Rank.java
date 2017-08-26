@@ -93,27 +93,10 @@ public class Rank {
 		return sbf.toString();
 	}
 
-	public int calculatePoint() {
-		int point = 0;
+	public double calculatePoint() {
+		double point = 0;
 		for (Piece piece : this.row) {
-			if (piece.isEqualType(Type.ROOK)) {
-				point += 5;
-			}
-			if (piece.isEqualType(Type.BISHOP)) {
-				point += 3;
-			}
-			if (piece.isEqualType(Type.QUEEN)) {
-				point += 9;
-			}
-			if (piece.isEqualType(Type.KNIGHT)){
-				point += 2.5; 
-			}
-			if (piece.isEqualType(Type.PAWN_BLACK)) {
-				point += 1;
-			}
-			if (piece.isEqualType(Type.PAWN_WHITE)) {
-				point += 1;
-			}
+			point += piece.getPoints();
 		}
 		return point;
 	}

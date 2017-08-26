@@ -16,7 +16,8 @@ public class RankTest {
 	public void calculatePoints() {
 		
 		Rank rank = setTestableRank();
-		assertEquals(3,rank.calculatePoint());
+		rank.addPiece(new Piece(Color.BLACK, Type.KNIGHT));
+		assertEquals(5.5, rank.calculatePoint(), 0.1);
 	}
 
 	Rank setTestableRank() {

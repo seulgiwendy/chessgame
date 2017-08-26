@@ -38,7 +38,7 @@ public class BoardTest {
 	@Test
 	public void initialize() throws Exception {
 		Board board = makeDefaultGameBoard();
-		System.out.println(board.getCurrentBoardStatus());
+		//System.out.println(board.getCurrentBoardStatus());
 	}
 	
 	@Test
@@ -129,6 +129,18 @@ public class BoardTest {
 	public void getColumn() {
 		Board board = makeDefaultGameBoard();
 		assertEquals(8, board.getColumn(1).getPiecesCount());
+	}
+	
+	@Test
+	public void verifyDeductedPoints() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("A3"));
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("B3"));
+		board.put(new Piece(Color.WHITE,  Type.PAWN_WHITE), new Position("C3"));
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("D7"));
+		board.put(new Piece(Color.BLACK,Type.PAWN_BLACK), new Position("D3"));
+		System.out.println(board.getCurrentBoardStatus());
+		assertEquals(2.5, board.calculateWhiteSidePoints(), DELTA);
 	}
 	
 	Board makeEmptyBoard() {

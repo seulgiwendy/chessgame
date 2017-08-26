@@ -58,4 +58,16 @@ public class Column {
 		return count;
 	}
 
+	public int getIdenticalWhitePawnsCount() {
+		int count = this.getWhitePanwsCount();
+		if (count == 1) {
+			return 0;
+		}
+		return count;
+	}
+
+	
+	
+	
+
 }

@@ -162,19 +162,34 @@ public class Board {
 
 	public double calculateBlackSidePoint() {
 		double result = 0.0;
-		
+		ArrayList<Column> columns = new ArrayList<>();
+
 		for (Rank rows : this.row) {
 			result += rows.calculateBlackSidePoint();
 
+		}
+		for (int i = 0; i < 8; i++) {
+			columns.add(getColumn(i));
+		}
+		for (Column column : columns) {
+			result -= column.getWhitePanwsCount() * 0.5;
 		}
 		return result;
 	}
 
 	public double calculateWhiteSidePoints() {
 		double result = 0.0;
+		ArrayList<Column> columns = new ArrayList<>();
 		for (Rank rows : this.row) {
 			result += rows.calculateWhiteSidePoints();
 		}
+		for (int i = 0; i < 8; i++) {
+			columns.add(getColumn(i));
+		}
+		for (Column column : columns) {
+			result -= column.getIdenticalWhitePawnsCount() * 0.5;
+		}
+
 		return result;
 	}
 
@@ -187,9 +202,9 @@ public class Board {
 			}
 			returnList.add(count);
 		}
-		//System.out.println(count);
+		// System.out.println(count);
 		return returnList;
-		
+
 	}
 
 	public ArrayList<Rank> getRows() {
@@ -203,7 +218,5 @@ public class Board {
 		}
 		return new Column(pieces);
 	}
-	
-	
 
 }

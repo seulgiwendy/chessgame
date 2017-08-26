@@ -107,6 +107,30 @@ public class BoardTest {
 		
 	}
 	
+	@Test
+	public void getPawnsinSameColumn() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("A3"));
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("B3"));
+		board.put(new Piece(Color.WHITE, Type.PAWN_WHITE), new Position("C5"));
+		board.put(new Piece(Color.WHITE,Type.PAWN_WHITE), new Position("D5"));
+		int count = board.getPawnsinSameColumn().get(4);
+		assertEquals(2, count);
+		//System.out.println(board.getPawnsinSameColumn());
+	}
+	
+	@Test
+	public void getRows() {
+		Board board = makeDefaultGameBoard();
+		assertEquals(8, board.getRows().size());
+	}
+	
+	@Test
+	public void getColumn() {
+		Board board = makeDefaultGameBoard();
+		assertEquals()
+	}
+	
 	Board makeEmptyBoard() {
 		Board board = new Board();
 		board.blankInitialize();

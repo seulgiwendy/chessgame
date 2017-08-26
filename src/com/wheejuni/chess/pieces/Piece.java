@@ -46,6 +46,7 @@ public class Piece {
 	String color;
 	char representation;
 	double points;
+	Position position;
 
 	/*
 	 * This constructor is used to create default Pawn piece with parameter "color".
@@ -74,7 +75,19 @@ public class Piece {
 		this.color = Piece.Color.WHITE.getColor();
 		this.representation = Piece.Type.PAWN_WHITE.getRepresentation();
 	}
-
+	
+	
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+	
+	public String getPosition() {
+		return this.position.getSymbol();
+	}
+	public int getColumnIndex() {
+		return this.position.getColumnIndex();
+	}
+	
 	public String getColor() {
 		return this.color;
 	}
@@ -130,5 +143,11 @@ public class Piece {
 
 		return this.points;
 	}
+
+	public boolean isBlank() {
+		return this.representation == Type.BLANK.getRepresentation();
+	}
+
+
 
 }

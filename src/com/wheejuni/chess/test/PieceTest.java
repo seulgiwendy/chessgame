@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.wheejuni.chess.domain.PieceBuilder;
+import com.wheejuni.chess.domain.Position;
 import com.wheejuni.chess.domain.piecesfactory.BlackPawnCreator;
 import com.wheejuni.chess.domain.piecesfactory.PieceTypeFactory;
 import com.wheejuni.chess.domain.piecesfactory.WhiteBishopCreator;
@@ -59,6 +60,26 @@ public class PieceTest {
 	public void getPointsFromPiece() {
 		Piece piece = newWhiteBishop();
 		assertEquals(3, piece.getPoints(), 0.1);
+	}
+	
+	@Test
+	public void setPosition() {
+		Piece piece = newBlackPawn();
+		piece.setPosition(new Position("A3"));
+		assertEquals("A3", piece.getPosition());
+	}
+	
+	@Test
+	public void getColumn() {
+		Piece piece = newBlackPawn();
+		piece.setPosition(new Position("A3"));
+		assertEquals(2, piece.getColumnIndex());
+	}
+	
+	@Test
+	public void isBlank() {
+		Piece piece = new Piece(Color.BLACK, Type.BISHOP);
+		assertFalse(piece.isBlank());
 	}
 
 	void verifyPawn(Color color, Type type) {

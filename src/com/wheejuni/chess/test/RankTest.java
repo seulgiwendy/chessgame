@@ -36,6 +36,20 @@ public class RankTest {
 		rank.addPiece(new Piece(Color.WHITE, Type.QUEEN));
 		assertEquals(9.0, rank.calculateWhiteSidePoints(), DELTA);
 	}
+	
+	@Test
+	public void getWhitePawnOnColumn() {
+		Rank rank = setTestableRank();
+		rank.addPieceByIndex(new Piece(Color.WHITE, Type.PAWN_WHITE), 3);
+		assertEquals(1, rank.getWhitePawnOnColumn(3));
+	}
+	
+	@Test
+	public void getBlackPawnOnColumn() {
+		Rank rank = setTestableRank();
+		rank.addPieceByIndex(new Piece(Color.BLACK, Type.PAWN_BLACK), 3);
+		assertEquals(1, rank.getBlackPawnOnColumn(3));
+	}
 
 	Rank setTestableRank() {
 		

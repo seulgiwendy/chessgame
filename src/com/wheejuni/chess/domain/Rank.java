@@ -16,7 +16,7 @@ public class Rank {
 	public void addPiece(Piece piece) {
 		row.add(piece);
 	}
-	
+
 	public void addPieceByIndex(Piece piece, int index) {
 		row.set(index, piece);
 	}
@@ -40,7 +40,7 @@ public class Rank {
 		}
 
 	}
-	
+
 	public void defaultBlackRankSetInitialize() {
 		row.add(new Piece(Color.BLACK, Type.ROOK));
 		row.add(new Piece(Color.BLACK, Type.KNIGHT));
@@ -51,9 +51,9 @@ public class Rank {
 		row.add(new Piece(Color.BLACK, Type.KNIGHT));
 		row.add(new Piece(Color.BLACK, Type.ROOK));
 	}
-	
+
 	public void defaultWhiteRankSetInitialize() {
-		
+
 		row.add(new Piece(Color.WHITE, Type.ROOK));
 		row.add(new Piece(Color.WHITE, Type.KNIGHT));
 		row.add(new Piece(Color.WHITE, Type.BISHOP));
@@ -62,7 +62,7 @@ public class Rank {
 		row.add(new Piece(Color.WHITE, Type.BISHOP));
 		row.add(new Piece(Color.WHITE, Type.KNIGHT));
 		row.add(new Piece(Color.WHITE, Type.ROOK));
-		
+
 	}
 
 	public int getEqualPieces(Piece piece) {
@@ -76,12 +76,11 @@ public class Rank {
 
 		return count;
 	}
-	
+
 	public Piece getPieceByPosition(int position) {
 		return this.row.get(position);
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		StringBuffer sbf = new StringBuffer();
@@ -120,7 +119,20 @@ public class Rank {
 		}
 		return result;
 	}
-	
-	
+
+	public int getWhitePawnOnColumn(int column) {
+		if (this.row.get(column).equals(new Piece(Color.WHITE, Type.PAWN_WHITE))) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public int getBlackPawnOnColumn(int column) {
+		if (this.row.get(column).equals(new Piece(Color.BLACK, Type.PAWN_BLACK))) {
+
+			return 1;
+		}
+		return 0;
+	}
 
 }

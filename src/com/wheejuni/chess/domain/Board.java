@@ -162,6 +162,7 @@ public class Board {
 
 	public double calculateBlackSidePoint() {
 		double result = 0.0;
+		
 		for (Rank rows : this.row) {
 			result += rows.calculateBlackSidePoint();
 
@@ -175,6 +176,24 @@ public class Board {
 			result += rows.calculateWhiteSidePoints();
 		}
 		return result;
+	}
+
+	public ArrayList<Integer> getPawnsinSameColumn() {
+		ArrayList<Integer> returnList = new ArrayList<>();
+		for (int i = 0; i < 8; i++) {
+			int count = 0;
+			for (int j = 0; j < row.size(); j++) {
+				count += row.get(j).getWhitePawnOnColumn(i);
+			}
+			returnList.add(count);
+		}
+		//System.out.println(count);
+		return returnList;
+		
+	}
+
+	public ArrayList<Rank> getRows() {
+		return this.row;
 	}
 
 }

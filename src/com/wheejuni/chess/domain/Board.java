@@ -161,4 +161,12 @@ public class Board {
 		return result;
 	}
 
+	public double calculateBlackSidePoint() {
+		double result = 0.0;
+		for (Rank rows : this.row) {
+			
+		}
+		return result;
+	}
+
 }

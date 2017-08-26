@@ -11,13 +11,30 @@ import com.wheejuni.chess.pieces.Piece.Type;
 
 public class RankTest {
 	
+	private static final double DELTA = 0.1;
+	
 
 	@Test
 	public void calculatePoints() {
 		
 		Rank rank = setTestableRank();
 		rank.addPiece(new Piece(Color.BLACK, Type.KNIGHT));
-		assertEquals(5.5, rank.calculatePoint(), 0.1);
+		assertEquals(5.5, rank.calculatePoint(), DELTA);
+	}
+	
+	@Test
+	public void calculateBlackSidePoints() {
+		Rank rank = setTestableRank();
+		rank.addPiece(new Piece(Color.WHITE, Type.KNIGHT));
+		rank.addPiece(new Piece(Color.BLACK, Type.KNIGHT));
+		assertEquals(5.5, rank.calculateBlackSidePoint(), DELTA);
+	}
+	
+	@Test
+	public void calculateWhiteSidePoints() {
+		Rank rank = setTestableRank();
+		rank.addPiece(new Piece(Color.WHITE, Type.QUEEN));
+		assertEquals(9.0, rank.calculateWhiteSidePoints(), DELTA);
 	}
 
 	Rank setTestableRank() {

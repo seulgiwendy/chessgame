@@ -101,4 +101,26 @@ public class Rank {
 		return point;
 	}
 
+	public double calculateBlackSidePoint() {
+		double result = 0.0;
+		for (Piece pieces : row) {
+			if (pieces.getColor().equals("black")) {
+				result += pieces.getPoints();
+			}
+		}
+		return result;
+	}
+
+	public double calculateWhiteSidePoints() {
+		double result = 0.0;
+		for (Piece pieces : row) {
+			if (pieces.getColor().equals("white")) {
+				result += pieces.getPoints();
+			}
+		}
+		return result;
+	}
+	
+	
+
 }

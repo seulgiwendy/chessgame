@@ -75,6 +75,20 @@ public class BoardTest {
 		assertEquals(2.5, board.calculatePoint(), DELTA);
 	}
 	
+	@Test
+	public void calculateEntireGameBoard() {
+		Board board = makeDefaultGameBoard();
+		assertEquals(76.0, board.calculatePoint(), DELTA);
+	}
+	
+	@Test
+	public void calculateBlackPieces() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.WHITE, Type.BISHOP), new Position("A8"));
+		board.put(new Piece(Color.BLACK, Type.BISHOP), new Position("C3"));
+		assertEquals(2.5, board.calculateBlackSidePoint(), DELTA);
+	}
+	
 	Board makeEmptyBoard() {
 		Board board = new Board();
 		board.blankInitialize();

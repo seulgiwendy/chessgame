@@ -12,7 +12,9 @@ import com.wheejuni.chess.pieces.Piece.Color;
 import com.wheejuni.chess.pieces.Piece.Type;
 
 public class BoardTest {
-
+	
+	private static final double DELTA = 0.1;
+	
 	Board board;
 
 	@Before
@@ -35,22 +37,19 @@ public class BoardTest {
 
 	@Test
 	public void initialize() throws Exception {
-		Board board = new Board();
-		board.initialize();
+		Board board = makeDefaultGameBoard();
 		System.out.println(board.getCurrentBoardStatus());
 	}
 	
 	@Test
 	public void getEqualPieces() {
-		Board board = new Board();
-		board.initialize();
+		Board board = makeDefaultGameBoard();
 		assertEquals(8, board.getPieceofColorandType(Type.PAWN_BLACK, Color.BLACK));
 	}
 	
 	@Test
 	public void putPiece() {
-		Board board = new Board();
-		board.blankInitialize();
+		Board board = makeEmptyBoard();
 		Piece piece = new Piece(Color.BLACK, Type.KING);
 		board.put(piece, new Position("C3"));
 		//System.out.println(board.getCurrentBoardStatus());
@@ -58,16 +57,33 @@ public class BoardTest {
 	
 	@Test
 	public void findPiece() {
-		Board board = new Board();
-		board.initialize();
+		Board board = makeDefaultGameBoard();
 		assertEquals(new Piece(Color.BLACK, Type.PAWN_BLACK), board.findPiece(new Position("B3")));
 	}
 	
 	@Test
 	public void calculatePoint() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.BLACK, Type.ROOK), new Position("C8"));
+		assertEquals(5, board.calculatePoint(), DELTA);
+	}
+	
+	@Test
+	public void calculatePointDouble() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.BLACK, Type.KNIGHT), new Position("B8"));
+		assertEquals(2.5, board.calculatePoint(), DELTA);
+	}
+	
+	Board makeEmptyBoard() {
 		Board board = new Board();
 		board.blankInitialize();
-		board.put(new Piece(Color.BLACK, Type.ROOK), new Position("C8"));
-		assertEquals(5, board.calculatePoint());
+		return board;
+	}
+	
+	Board makeDefaultGameBoard() {
+		Board board = new Board();
+		board.initialize();
+		return board;
 	}
 }

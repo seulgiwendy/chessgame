@@ -30,7 +30,13 @@ public class Board {
 	private ArrayList<Piece> blackPawns;
 	private ArrayList<BoardTile> board;
 	private ArrayList<Rank> row = new ArrayList<>();
-
+	
+	/*method "add" is not supported anymore.
+	 * use put(Piece, Position) instead.
+	 */
+	
+	
+	@Deprecated
 	public void add(Piece pawn) {
 
 		if (whitePawns == null) {
@@ -146,12 +152,13 @@ public class Board {
 		target.addPieceByIndex(piece, position.getColumnIndex());
 	}
 
-	public int calculatePoint() {
-		Rank rank = this.row.get(2);
-		if (rank.getEqualPieces(new Piece(Color.BLACK, Type.ROOK)) == 1) {
-			return 5;
+	public double calculatePoint() {
+		double result = 0.0;
+		for (Rank rows : this.row) {
+			result += rows.calculatePoint();
 		}
-		return 0;
+		
+		return result;
 	}
 
 }

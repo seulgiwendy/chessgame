@@ -30,12 +30,11 @@ public class Board {
 	private ArrayList<Piece> blackPawns;
 	private ArrayList<BoardTile> board;
 	private ArrayList<Rank> row = new ArrayList<>();
-	
-	/*method "add" is not supported anymore.
-	 * use put(Piece, Position) instead.
+
+	/*
+	 * method "add" is not supported anymore. use put(Piece, Position) instead.
 	 */
-	
-	
+
 	@Deprecated
 	public void add(Piece pawn) {
 
@@ -157,14 +156,23 @@ public class Board {
 		for (Rank rows : this.row) {
 			result += rows.calculatePoint();
 		}
-		
+
 		return result;
 	}
 
 	public double calculateBlackSidePoint() {
 		double result = 0.0;
 		for (Rank rows : this.row) {
-			
+			result += rows.calculateBlackSidePoint();
+
+		}
+		return result;
+	}
+
+	public double calculateWhiteSidePoints() {
+		double result = 0.0;
+		for (Rank rows : this.row) {
+			result += rows.calculateWhiteSidePoints();
 		}
 		return result;
 	}

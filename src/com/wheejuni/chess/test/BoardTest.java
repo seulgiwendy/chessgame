@@ -85,8 +85,26 @@ public class BoardTest {
 	public void calculateBlackPieces() {
 		Board board = makeEmptyBoard();
 		board.put(new Piece(Color.WHITE, Type.BISHOP), new Position("A8"));
-		board.put(new Piece(Color.BLACK, Type.BISHOP), new Position("C3"));
+		board.put(new Piece(Color.BLACK, Type.KNIGHT), new Position("C3"));
 		assertEquals(2.5, board.calculateBlackSidePoint(), DELTA);
+	}
+	
+	@Test
+	public void calculateMultiBlackPieces() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.BLACK, Type.KNIGHT), new Position("A3"));
+		board.put(new Piece(Color.BLACK, Type.QUEEN), new Position("H1"));
+		assertEquals(Type.KNIGHT.getPoints() + Type.QUEEN.getPoints(), board.calculateBlackSidePoint(), DELTA);
+		
+	}
+	
+	@Test
+	public void calculateWhitePieces() {
+		Board board = makeEmptyBoard();
+		board.put(new Piece(Color.WHITE, Type.KNIGHT), new Position("A3"));
+		board.put(new Piece(Color.WHITE, Type.QUEEN), new Position("A5"));
+		assertEquals(Type.KNIGHT.getPoints() + Type.QUEEN.getPoints(), board.calculateWhiteSidePoints(), DELTA);
+		
 	}
 	
 	Board makeEmptyBoard() {

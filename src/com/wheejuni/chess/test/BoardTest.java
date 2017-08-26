@@ -128,7 +128,7 @@ public class BoardTest {
 	@Test
 	public void getColumn() {
 		Board board = makeDefaultGameBoard();
-		assertEquals()
+		assertEquals(8, board.getColumn(1).getPiecesCount());
 	}
 	
 	Board makeEmptyBoard() {

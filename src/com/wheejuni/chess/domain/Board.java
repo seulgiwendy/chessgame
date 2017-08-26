@@ -196,4 +196,14 @@ public class Board {
 		return this.row;
 	}
 
+	public Column getColumn(int columnIndex) {
+		ArrayList<Piece> pieces = new ArrayList<>();
+		for (Rank rank : this.row) {
+			pieces.add(rank.getPieceByPosition(columnIndex));
+		}
+		return new Column(pieces);
+	}
+	
+	
+
 }

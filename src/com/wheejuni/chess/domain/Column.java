@@ -37,4 +37,25 @@ public class Column {
 		return count;
 	}
 
+	public int getBlackPawnsCount() {
+		int count = 0;
+		for (Piece piece: this.column) {
+			if (piece.isBlackPawn()) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public int getWhitePanwsCount() {
+		int count = 0;
+		for (Piece piece: this.column) {
+			if (piece.isWhitePawn()) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+
 }

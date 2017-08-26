@@ -31,6 +31,18 @@ public class ColumnTest {
 		assertEquals(4, column.getNonBlankPiecesCount());
 	}
 	
+	@Test
+	public void getBlackPawnsCount() {
+		Column column = getDefaultColumn();
+		assertEquals(1, column.getBlackPawnsCount());
+	}
+	
+	@Test
+	public void getWhitePawnsCount() {
+		Column column = getDefaultColumn();
+		assertEquals(1, column.getWhitePanwsCount());
+	}
+	
 	Board getDefaultBoard() {
 		Board board = new Board();
 		board.initialize();

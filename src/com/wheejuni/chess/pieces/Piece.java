@@ -148,6 +148,14 @@ public class Piece {
 		return this.representation == Type.BLANK.getRepresentation();
 	}
 
+	public boolean isBlackPawn() {
+		return this.representation == Type.PAWN_BLACK.getRepresentation();
+	}
+
+	public boolean isWhitePawn() {
+		return this.representation == Type.PAWN_WHITE.getRepresentation();
+	}
+
 
 
 }

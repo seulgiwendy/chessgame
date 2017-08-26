@@ -81,6 +81,18 @@ public class PieceTest {
 		Piece piece = new Piece(Color.BLACK, Type.BISHOP);
 		assertFalse(piece.isBlank());
 	}
+	
+	@Test
+	public void isBlackPawn() {
+		Piece piece = new Piece(Color.BLACK, Type.PAWN_BLACK);
+		assertTrue(piece.isBlackPawn());
+	}
+	
+	@Test
+	public void isWhitePawn() {
+		Piece piece = new Piece(Color.WHITE, Type.PAWN_WHITE);
+		assertTrue(piece.isWhitePawn());
+	}
 
 	void verifyPawn(Color color, Type type) {
 		Piece pawn = new Piece(color, type);

@@ -31,6 +31,11 @@ public class Board {
 	private ArrayList<BoardTile> board;
 	private ArrayList<Rank> row = new ArrayList<>();
 
+	/*
+	 * method "add" is not supported anymore. use put(Piece, Position) instead.
+	 */
+
+	@Deprecated
 	public void add(Piece pawn) {
 
 		if (whitePawns == null) {
@@ -142,8 +147,76 @@ public class Board {
 
 	public void put(Piece piece, Position position) {
 		Rank target = this.row.get(position.getRankIndex());
-		
+
 		target.addPieceByIndex(piece, position.getColumnIndex());
+	}
+
+	public double calculatePoint() {
+		double result = 0.0;
+		for (Rank rows : this.row) {
+			result += rows.calculatePoint();
+		}
+
+		return result;
+	}
+
+	public double calculateBlackSidePoint() {
+		double result = 0.0;
+		ArrayList<Column> columns = new ArrayList<>();
+
+		for (Rank rows : this.row) {
+			result += rows.calculateBlackSidePoint();
+
+		}
+		for (int i = 0; i < 8; i++) {
+			columns.add(getColumn(i));
+		}
+		for (Column column : columns) {
+			result -= column.getIdenticalBlackPawnsCount() * 0.5;
+		}
+		return result;
+	}
+
+	public double calculateWhiteSidePoints() {
+		double result = 0.0;
+		ArrayList<Column> columns = new ArrayList<>();
+		for (Rank rows : this.row) {
+			result += rows.calculateWhiteSidePoints();
+		}
+		for (int i = 0; i < 8; i++) {
+			columns.add(getColumn(i));
+		}
+		for (Column column : columns) {
+			result -= column.getIdenticalWhitePawnsCount() * 0.5;
+		}
+
+		return result;
+	}
+
+	public ArrayList<Integer> getPawnsinSameColumn() {
+		ArrayList<Integer> returnList = new ArrayList<>();
+		for (int i = 0; i < 8; i++) {
+			int count = 0;
+			for (int j = 0; j < row.size(); j++) {
+				count += row.get(j).getWhitePawnOnColumn(i);
+			}
+			returnList.add(count);
+		}
+		// System.out.println(count);
+		return returnList;
+
+	}
+
+	public ArrayList<Rank> getRows() {
+		return this.row;
+	}
+
+	public Column getColumn(int columnIndex) {
+		ArrayList<Piece> pieces = new ArrayList<>();
+		for (Rank rank : this.row) {
+			pieces.add(rank.getPieceByPosition(columnIndex));
+		}
+		return new Column(pieces);
 	}
 
 }

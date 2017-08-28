@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.wheejuni.chess.domain.PieceBuilder;
+import com.wheejuni.chess.domain.Position;
 import com.wheejuni.chess.domain.piecesfactory.BlackPawnCreator;
 import com.wheejuni.chess.domain.piecesfactory.PieceTypeFactory;
 import com.wheejuni.chess.domain.piecesfactory.WhiteBishopCreator;
@@ -32,7 +33,7 @@ public class PieceTest {
 	@Test
 	public void createByInterface() {
 		Piece piece = newBlackPawn();
-		System.out.println(piece.getColor());
+		//System.out.println(piece.getColor());
 		assertEquals(piece.getColor(), Piece.Color.BLACK.getColor());
 	}
 
@@ -41,6 +42,56 @@ public class PieceTest {
 		Piece piece = newWhiteBishop();
 		assertEquals(piece.getRepresentation(), Piece.Type.BISHOP.getRepresentation());
 
+	}
+	
+	@Test
+	public void equalColor() {
+		Piece piece = new Piece(Color.BLACK, Type.BISHOP);
+		assertTrue(piece.isEqualColor(Color.BLACK));
+	}
+	
+	@Test
+	public void equalPiece() {
+		Piece piece = newWhiteBishop();
+		assertTrue(piece.isEqualType(Type.BISHOP));
+	}
+	
+	@Test
+	public void getPointsFromPiece() {
+		Piece piece = newWhiteBishop();
+		assertEquals(3, piece.getPoints(), 0.1);
+	}
+	
+	@Test
+	public void setPosition() {
+		Piece piece = newBlackPawn();
+		piece.setPosition(new Position("A3"));
+		assertEquals("A3", piece.getPosition());
+	}
+	
+	@Test
+	public void getColumn() {
+		Piece piece = newBlackPawn();
+		piece.setPosition(new Position("A3"));
+		assertEquals(2, piece.getColumnIndex());
+	}
+	
+	@Test
+	public void isBlank() {
+		Piece piece = new Piece(Color.BLACK, Type.BISHOP);
+		assertFalse(piece.isBlank());
+	}
+	
+	@Test
+	public void isBlackPawn() {
+		Piece piece = new Piece(Color.BLACK, Type.PAWN_BLACK);
+		assertTrue(piece.isBlackPawn());
+	}
+	
+	@Test
+	public void isWhitePawn() {
+		Piece piece = new Piece(Color.WHITE, Type.PAWN_WHITE);
+		assertTrue(piece.isWhitePawn());
 	}
 
 	void verifyPawn(Color color, Type type) {

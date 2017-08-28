@@ -52,7 +52,7 @@ public class BoardTest {
 		Board board = new Board();
 		board.blankInitialize();
 		Piece piece = new Piece(Color.BLACK, Type.KING);
-		board.put(piece, new Position("C3"));
+		board.put(piece, new Position("C5"));
 		System.out.println(board.getCurrentBoardStatus());
 	}
 	

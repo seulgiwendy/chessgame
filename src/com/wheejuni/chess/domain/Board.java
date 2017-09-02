@@ -144,6 +144,16 @@ public class Board {
 	public Piece findPiece(Position position) {
 		return this.row.get(position.getRankIndex()).getPieceByPosition(position.getColumnIndex());
 	}
+	
+	public void movePiece(Position originalPosition, Position newPosition) {
+		
+		Piece movedPiece = findPiece(originalPosition);
+		movedPiece.setPosition(newPosition);
+		this.put(movedPiece, newPosition);
+		this.put(new Piece(Color.BLANK, Type.BLANK), originalPosition);
+		
+		
+	}
 
 	public void put(Piece piece, Position position) {
 		Rank target = this.row.get(position.getRankIndex());

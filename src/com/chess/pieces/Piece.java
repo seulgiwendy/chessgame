@@ -1,6 +1,6 @@
 package com.chess.pieces;
 
-public class Pawn {
+public class Piece {
 	
 	public static final String WHITE_STRING = "white";
 	public static final String BLACK_STRING = "black";
@@ -12,16 +12,16 @@ public class Pawn {
 	private char representation;
 	
 	
-	public Pawn() {
+	public Piece() {
 		this.color = "white";
 		
 	}
 	
-	public Pawn(String color) {
+	public Piece(String color) {
 		this.color = color;
 	}
 
-	public Pawn(String color, char representation) {
+	public Piece(String color, char representation) {
 		this.color = color;
 		this.representation = representation;
 	}

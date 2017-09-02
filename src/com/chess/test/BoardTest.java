@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.chess.domain.Board;
-import com.chess.pieces.Pawn;
+import com.chess.pieces.Piece;
 
 public class BoardTest {
 
@@ -13,8 +13,8 @@ public class BoardTest {
 	public void test() {
 
 		Board board = init();
-		board.add(new Pawn());
-		board.add(new Pawn(Pawn.BLACK_STRING));
+		board.add(new Piece());
+		board.add(new Piece(Piece.BLACK_STRING));
 		assertEquals(2, board.size());
 		assertEquals("white", board.getPawn(0).getColor());
 		assertEquals("black", board.getPawn(1).getColor());
@@ -27,6 +27,7 @@ public class BoardTest {
 		board.initialize();
 		assertEquals("PPPPPPPP", board.getWhitePawnsResult());
 		assertEquals("pppppppp", board.getBlackPawnsResult());
+		System.out.println(board.getBoardStatus());
 		
 	}
 	

@@ -2,15 +2,18 @@ package com.chess.domain;
 
 import java.util.ArrayList;
 
-import com.chess.pieces.Pawn;
+import com.chess.pieces.Piece;
 
 public class Board {
+	
+	public static final String BLANK_LINE = "********";
+	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-	ArrayList<Pawn> pawns;
-	ArrayList<Pawn> whitePawns;
-	ArrayList<Pawn> blackPawns;
+	ArrayList<Piece> pawns;
+	ArrayList<Piece> whitePawns;
+	ArrayList<Piece> blackPawns;
 
-	public void add(Pawn pawn) {
+	public void add(Piece pawn) {
 		if (pawns == null) {
 			pawns = new ArrayList<>();
 		}
@@ -22,7 +25,7 @@ public class Board {
 		return this.pawns.size();
 	}
 
-	public Pawn getPawn(int index) {
+	public Piece getPawn(int index) {
 
 		return pawns.get(index);
 	}
@@ -37,10 +40,10 @@ public class Board {
 			blackPawns = new ArrayList<>();
 		}
 		for (int i = 0; i < 8; i++) {
-			whitePawns.add(new Pawn(Pawn.WHITE_STRING));
+			whitePawns.add(new Piece(Piece.WHITE_STRING));
 		}
 		for (int i = 0; i < 8; i++) {
-			blackPawns.add(new Pawn(Pawn.BLACK_STRING));
+			blackPawns.add(new Piece(Piece.BLACK_STRING));
 		}
 
 	}
@@ -56,20 +59,46 @@ public class Board {
 
 		return resultBuffer.toString();
 	}
+	
+	public String getBoardStatus() {
+		StringBuffer sbf = new StringBuffer();
+		sbf.append(BLANK_LINE);
+		sbf.append(LINE_SEPARATOR);
+		for (Piece p : this.blackPawns) {
+			sbf.append(p.getRepresentation());
+		}
+		sbf.append(LINE_SEPARATOR);
+		for (int i = 0; i < 4; i++) {
+			sbf.append(BLANK_LINE);
+			/*if (i == 3) {
+				break;
+			}*/
+			sbf.append(LINE_SEPARATOR);
+		}
+		for (Piece p : this.whitePawns) {
+			sbf.append(p.getRepresentation());
+		}
+		sbf.append(LINE_SEPARATOR);
+		sbf.append(BLANK_LINE);
+		
+		return sbf.toString();
+	}
 
 	private StringBuffer getPawnsRepresentation(StringBuffer buffer, String color) {
 		if (color.equals("white")) {
-			for (Pawn p : whitePawns) {
+			for (Piece p : whitePawns) {
 				buffer.append(p.getRepresentation());
 			}
 			return buffer;
 		}
-
-		for (Pawn p : blackPawns) {
+ 
+		for (Piece p : blackPawns) {
 			buffer.append(p.getRepresentation());
 		}
 
 		return buffer;
 	}
+	
+	
 
 }

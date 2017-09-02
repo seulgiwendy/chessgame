@@ -4,11 +4,23 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.chess.domain.Board;
+
 public class BoardTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		
+		Board board = init();
+		
+		
+	}
+	
+	private Board init() {
+		
+		return new Board();
+		
 	}
 
 }
+ 

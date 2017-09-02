@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.chess.domain.Board;
-import static com.chess.utils.StringUtils.appendNewLine;;
+import static com.chess.utils.StringUtils.appendNewLine;
 
 
 public class StringUtilsTest {

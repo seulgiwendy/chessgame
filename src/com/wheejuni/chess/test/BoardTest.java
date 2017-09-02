@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.wheejuni.chess.domain.Board;
 import com.wheejuni.chess.domain.Position;
+import com.wheejuni.chess.exception.IllegalMovementException;
 import com.wheejuni.chess.pieces.Piece;
 import com.wheejuni.chess.pieces.Piece.Color;
 import com.wheejuni.chess.pieces.Piece.Type;
@@ -61,5 +62,10 @@ public class BoardTest {
 		Board board = new Board();
 		board.initialize();
 		assertEquals(new Piece(Color.BLACK, Type.PAWN_BLACK), board.findPiece(new Position("B3")));
+	}
+	
+	@Test(expected = IllegalMovementException.class)
+	public void checkException() {
+		throw new IllegalMovementException("test exception case");
 	}
 }

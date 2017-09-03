@@ -3,6 +3,8 @@ package com.chess.domain;
 import java.util.ArrayList;
 
 import com.chess.pieces.Piece;
+import com.chess.utils.StringUtils;
+
 import static com.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
@@ -13,6 +15,7 @@ public class Board {
 	ArrayList<Piece> pieces;
 	ArrayList<Piece> whitePawns;
 	ArrayList<Piece> blackPawns;
+	ArrayList<Rank> ranks;
 
 	public void add(Piece pawn) {
 		if (pieces == null) {
@@ -32,119 +35,87 @@ public class Board {
 	}
 
 	public void initialize() {
+		ranks = new ArrayList<>();
+		Rank blackDefaultRank = new Rank();
+		Rank blackPawnRank = new Rank();
+		Rank whiteDefaultRank = new Rank();
+		Rank whitePawnRank = new Rank();
 
-		if (pieces == null) {
-			pieces = new ArrayList<>();
+		blackDefaultRank.blackDefaultInitialize();
+		ranks.add(blackDefaultRank);
 
-		}
+		blackPawnRank.blackPawnInitialize();
+		ranks.add(blackPawnRank);
 
-		if (whitePawns == null) {
-			whitePawns = new ArrayList<>();
-		}
-
-		if (blackPawns == null) {
-			blackPawns = new ArrayList<>();
-		}
-		pieces.add(Piece.createBlackRook());
-		pieces.add(Piece.createBlackKnight());
-		pieces.add(Piece.createBlackBishop());
-		pieces.add(Piece.createBlackQueen());
-		pieces.add(Piece.createBlackKing());
-		pieces.add(Piece.createBlackBishop());
-		pieces.add(Piece.createBlackKnight());
-		pieces.add(Piece.createBlackRook());
-		for (int i = 0; i < 8; i++) {
-			blackPawns.add(Piece.createBlackPawn());
-			pieces.add(Piece.createBlackPawn());
-		}
-		
-		for (int i = 0; i < 32; i++) {
-			pieces.add(Piece.createBlankPiece());
-		}
-
-		for (int i = 0; i < 8; i++) {
-			whitePawns.add(Piece.createWhitePawn());
-			pieces.add(Piece.createWhitePawn());
-		}
-		pieces.add(Piece.createWhiteRook());
-		pieces.add(Piece.createWhiteKnight());
-		pieces.add(Piece.createWhiteBishop());
-		pieces.add(Piece.createWhiteQueen());
-		pieces.add(Piece.createWhiteKing());
-		pieces.add(Piece.createWhiteBishop());
-		pieces.add(Piece.createWhiteKnight());
-		pieces.add(Piece.createWhiteRook());
-
-	}
-
-	public String getWhitePawnsResult() {
-		StringBuffer resultBuffer = getPiecesRepresentation(new StringBuffer(), "white");
-
-		return resultBuffer.toString();
-	}
-
-	public String getBlackPawnsResult() {
-		StringBuffer resultBuffer = getPiecesRepresentation(new StringBuffer(), "black");
-
-		return resultBuffer.toString();
-	}
-
-	public String getBoardStatus() {
-		StringBuffer sbf = new StringBuffer();
-		sbf.append(BLANK_LINE);
-		sbf.append(LINE_SEPARATOR);
-		for (Piece p : this.blackPawns) {
-			sbf.append(p.getRepresentation());
-		}
-		sbf.append(LINE_SEPARATOR);
 		for (int i = 0; i < 4; i++) {
-			sbf.append(BLANK_LINE);
-			/*
-			 * if (i == 3) { break; }
-			 */
-			sbf.append(LINE_SEPARATOR);
-		}
-		for (Piece p : this.whitePawns) {
-			sbf.append(p.getRepresentation());
-		}
-		sbf.append(LINE_SEPARATOR);
-		sbf.append(BLANK_LINE);
-
-		return sbf.toString();
-	}
-
-	private StringBuffer getPiecesRepresentation(StringBuffer buffer, String color) {
-		if (color.equals("white")) {
-			for (Piece p : whitePawns) {
-				buffer.append(p.getRepresentation());
-			}
-			return buffer;
+			Rank blankRank = new Rank();
+			blankRank.blankInitialize();
+			ranks.add(blankRank);
 		}
 
-		for (Piece p : blackPawns) {
-			buffer.append(p.getRepresentation());
-		}
+		whitePawnRank.whitePawnInitialize();
+		ranks.add(whitePawnRank);
 
-		return buffer;
+		whiteDefaultRank.whiteDefaultInitialize();
+		ranks.add(whiteDefaultRank);
+
 	}
 
 	public int pieceCount() {
-		return pieces.size();
+		int count = 0;
+		for (Rank r : ranks) {
+			count += r.getPiecesCount();
+		}
+
+		return count;
 	}
 
 	public String showBoard() {
 		int index = 0;
 		StringBuffer sbf = new StringBuffer();
-		for (Piece p : pieces) {
-			sbf.append(p.getRepresentation());
+		for (Rank r : ranks) {
+			sbf.append(r.toString());
 			index++;
-			if (index % 8 == 0) {
-				sbf.append(appendNewLine(""));
-			}
+			sbf.append(StringUtils.appendNewLine(""));
 		}
-		
-		
+
 		return sbf.toString();
+	}
+
+	public void blankInitialize() {
+		ranks = new ArrayList<>();
+		for (int i = 0; i < 8; i++) {
+			Rank rank = new Rank();
+			rank.blankInitialize();
+			ranks.add(rank);
+		}
+	}
+
+	public void put(Position position, Piece piece) {
+
+		ranks.get(getRankIndexFromPosition(position)).addPieceByIndex(getColumnIndexFromPosition(position), piece);
+	}
+
+	public Piece findPiece(Position position) {
+
+		return ranks.get(getRankIndexFromPosition(position)).getPiece(getColumnIndexFromPosition(position));
+
+	}
+
+	public void move(Position originPosition, Position destPosition) {
+		Piece movingPiece = ranks.get(getRankIndexFromPosition(originPosition))
+				.getPiece(getColumnIndexFromPosition(originPosition));
+		put(originPosition, Piece.createBlankPiece());
+		put(destPosition, movingPiece);
+
+	}
+
+	private int getRankIndexFromPosition(Position position) {
+		return position.getRankIndex();
+	}
+
+	private int getColumnIndexFromPosition(Position position) {
+		return position.getColumnIndex();
 	}
 
 }

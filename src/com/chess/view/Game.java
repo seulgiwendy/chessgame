@@ -16,7 +16,7 @@ public class Game {
 		while (progSwitch) {
 			Scanner scn = new Scanner(System.in);
 			if (scn.next().equals("start")) {
-				System.out.println(board.getBoardStatus());
+				System.out.println(board.showBoard());
 				
 			}
 			if (scn.next().equals("end")) {

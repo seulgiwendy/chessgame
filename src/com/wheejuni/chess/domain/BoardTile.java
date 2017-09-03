@@ -1,26 +1,26 @@
 package com.wheejuni.chess.domain;
 
-import com.wheejuni.chess.pieces.Pawn;
+import com.wheejuni.chess.pieces.Piece;
 
 public class BoardTile {
 
-	private Pawn pawn;
+	private Piece pawn;
 	private int index;
 
 	public BoardTile(int index) {
 		this.index = index;
 	}
 	
-	public BoardTile(int index, Pawn pawn) {
+	public BoardTile(int index, Piece pawn) {
 		this.index = index;
 		this.pawn = pawn;
 	}
 	
-	public Pawn getPawn() {
+	public Piece getPawn() {
 		return pawn;
 	}
 
-	public void setPawn(Pawn pawn) {
+	public void setPawn(Piece pawn) {
 		this.pawn = pawn;
 	}
 

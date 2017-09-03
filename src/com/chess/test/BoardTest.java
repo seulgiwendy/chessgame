@@ -11,7 +11,7 @@ import com.chess.pieces.Piece;
 import static com.chess.utils.StringUtils.appendNewLine;
 
 public class BoardTest {
-
+	public static final double DELTA = 0.1;
 	private Board board;
 
 	@Before
@@ -55,5 +55,12 @@ public class BoardTest {
 		board.move(new Position("C4"), new Position("D5"));
 		assertEquals(Piece.createBlackBishop(), board.findPiece(new Position("D5")));
 		assertEquals(Piece.createBlankPiece(), board.findPiece(new Position("C4")));
+	}
+	
+	@Test
+	public void getScore() {
+		board.blankInitialize();
+		board.put(new Position("C3"), Piece.createBlackQueen());
+		assertEquals(9.0, board.getBlackScore(), DELTA);
 	}
 }

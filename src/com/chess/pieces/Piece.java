@@ -1,6 +1,6 @@
 package com.chess.pieces;
 
-public class Piece {
+public class Piece implements Comparable{
 
 	public enum Color {
 		WHITE("white"), BLACK("black"), NOCOLOR("nocolor");
@@ -18,17 +18,23 @@ public class Piece {
 	}
 
 	public enum Type {
-		PAWN('p'), ROOK('r'), KNIGHT('n'), BISHOP('b'), QUEEN('q'), KING('k'), BLANK('*');
+		PAWN('p', 1.0), ROOK('r', 5.0), KNIGHT('n', 2.5), BISHOP('b', 3.0), QUEEN('q', 9.0), KING('k', 0.0), BLANK('*', 0.0);
 
 		private char representation;
+		private double point;
 
-		private Type(char representation) {
+		private Type(char representation, double point) {
 			this.representation = representation;
+			this.point = point;
 		}
 
 		@Deprecated
 		public char getRepresentation() {
 			return this.representation;
+		}
+		
+		public double getPoint() {
+			return this.point;
 		}
 
 		public char getWhiteRepresentation() {
@@ -146,6 +152,9 @@ public class Piece {
 		}
 		return false;
 	}
+	public double getPoints() {
+		return this.type.getPoint();
+	}
 
 	@Override
 	public int hashCode() {
@@ -171,5 +180,12 @@ public class Piece {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public int compareTo(Object o) {
+		Piece compare = (Piece)o;
+		return (int)compare.getPoints() - (int)this.getPoints();
+	}
+
 
 }

@@ -82,6 +82,11 @@ public class PieceTest {
 		assertEquals(Piece.createBlackBishop(), Piece.createBlackBishop());
 
 	}
+	
+	@Test
+	public void getPointsByPiece() {
+		assertEquals(Type.BISHOP.getPoint(), Piece.createBlackBishop().getPoints(), BoardTest.DELTA);
+	}
 
 	void verifyPiece(final Piece piece, final String color, final char representation) {
 		// Piece pawn = new Piece(color, representation);

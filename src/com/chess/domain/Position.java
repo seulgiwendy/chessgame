@@ -43,7 +43,7 @@ public class Position {
 			throw new InvalidPositionInputException("Invalid Position Request");
 		}
 
-		this.rankIndex = Integer.parseInt(positionByString[1]) - 1;
+		this.rankIndex = 8 - Integer.parseInt(positionByString[1]);
 
 	}
 

@@ -1,6 +1,7 @@
 package com.chess.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.chess.exceptions.UninitializedRankException;
 import com.chess.pieces.Piece;
@@ -58,6 +59,32 @@ public class Rank {
 		return pieces.get(index);
 	}
 
+	public ArrayList<Piece> getBlackPieces() {
+
+		ArrayList<Piece> returnpieces = new ArrayList<>();
+
+		for (Piece p : pieces) {
+			if (p.isBlack()) {
+				returnpieces.add(p);
+			}
+		}
+		Collections.sort(returnpieces);
+		return returnpieces;
+	}
+
+	public ArrayList<Piece> getWhitePieces() {
+
+		ArrayList<Piece> returnpieces = new ArrayList<>();
+
+		for (Piece p : pieces) {
+			if (p.isWhite()) {
+				returnpieces.add(p);
+			}
+		}
+		Collections.sort(returnpieces);
+		return returnpieces;
+	}
+
 	public int getPiecesCount() {
 		if (pieces == null) {
 			return 0;
@@ -77,9 +104,8 @@ public class Rank {
 
 	public void addPieceByIndex(int index, Piece piece) {
 		try {
-		pieces.set(index, piece);
-		}
-		catch(Exception e) {
+			pieces.set(index, piece);
+		} catch (Exception e) {
 			throw new UninitializedRankException("you have to initialize the rank, prior to put the pieces in it.");
 		}
 	}
@@ -93,6 +119,30 @@ public class Rank {
 		}
 
 		return sbf.toString();
+	}
+
+	public double getBlackPoint() {
+		double points = 0.0;
+
+		for (Piece p : pieces) {
+			if (p.isBlack()) {
+				points += p.getPoints();
+			}
+		}
+
+		return points;
+	}
+
+	public double getWhitePoint() {
+		double points = 0.0;
+
+		for (Piece p : pieces) {
+			if (p.isWhite()) {
+				points += p.getPoints();
+			}
+		}
+
+		return points;
 	}
 
 }

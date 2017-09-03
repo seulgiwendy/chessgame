@@ -7,6 +7,7 @@ import com.chess.utils.StringUtils;
 
 import static com.chess.utils.StringUtils.appendNewLine;
 
+@SuppressWarnings("unused")
 public class Board {
 
 	public static final String BLANK_LINE = "********";
@@ -116,6 +117,24 @@ public class Board {
 
 	private int getColumnIndexFromPosition(Position position) {
 		return position.getColumnIndex();
+	}
+
+	public double getBlackScore() {
+		double points = 0;
+		for (Rank r : ranks) {
+			points += r.getBlackPoint();
+		}
+
+		return points;
+	}
+
+	public double getWhiteScore() {
+		double points = 0;
+		for (Rank r : ranks) {
+			points += r.getWhitePoint();
+		}
+
+		return points;
 	}
 
 }

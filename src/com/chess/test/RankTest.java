@@ -9,6 +9,7 @@ import com.chess.domain.Rank;
 import com.chess.pieces.Piece;
 
 public class RankTest {
+
 	Rank rank;
 
 	@Before
@@ -64,12 +65,43 @@ public class RankTest {
 		rank.blackDefaultInitialize();
 		assertEquals(2, rank.getEqualPiecesCount(Piece.createBlackBishop()));
 	}
-	
+
 	@Test
 	public void addPieceByIndex() {
 		rank.blankInitialize();
 		rank.addPieceByIndex(3, Piece.createBlackBishop());
 		assertEquals(Piece.createBlackBishop(), rank.getPiece(3));
+	}
+
+	@Test
+	public void getPointsBySide() {
+		rank.blankInitialize();
+		rank.addPieceByIndex(2, Piece.createBlackKnight());
+		rank.addPieceByIndex(3, Piece.createBlackQueen());
+		rank.addPieceByIndex(4, Piece.createWhiteBishop());
+		assertEquals(11.5, rank.getBlackPoint(), BoardTest.DELTA);
+	}
+
+	@Test
+	public void getPointsofWhites() {
+		rank.blankInitialize();
+		rank.addPieceByIndex(0, Piece.createWhiteBishop());
+		rank.addPieceByIndex(2, Piece.createBlackKnight());
+		rank.addPieceByIndex(5, Piece.createWhiteKnight());
+		assertEquals(5.5, rank.getWhitePoint(), BoardTest.DELTA);
+	}
+
+	@Test
+	public void getBlackPieces() {
+		rank.blackDefaultInitialize();
+		assertEquals(8, rank.getBlackPieces().size());
+		assertEquals(Piece.createBlackQueen(), rank.getBlackPieces().get(0));
+	}
+
+	@Test
+	public void getWhitePieces() {
+		rank.whiteDefaultInitialize();
+		assertEquals(8, rank.getWhitePieces().size());
 	}
 
 }
